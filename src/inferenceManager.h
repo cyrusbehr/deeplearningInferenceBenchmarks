@@ -2,15 +2,18 @@
 
 #include <memory>
 
-#include "inferenceEngine.h"
+#include "ncnnInferEng.h" // TODO will need to put ifdef statements here
 
 class InferenceManager {
 public:
-    InferenceManager(const EvalInferenceEngine::InferenceEngineType& inferenceType, const std::vector<std::string>& configFiles);
+    InferenceManager(const std::string& modelDir);
 
-    bool runInference(const std::string& imageDirectory, double& avgTime);
+    void runBenchmark(unsigned int numIterations = 1000);
 private:
-    std::unique_ptr<EvalInferenceEngine> m_inferencePtr = nullptr;
-    static std::vector<std::string> getFilesInDir(const std::string &path);
-    static std::string exec(const char* cmd);
+    std::unique_ptr<InferenceEngine> m_inferenceEnginePtr = nullptr;
+    const std::string m_imagePath;
+
+    void readTemplateFromDisk(const std::string& templatePath, std::array<float, 500>& templ);
+    float dotProduct(const std::array<float, 500>& v1, const std::array<float, 500>& v2);
+    void normalize(std::array<float, 500>& v);
 };

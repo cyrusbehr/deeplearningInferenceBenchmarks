@@ -1,3 +1,0 @@
-[submodule "3rd_party_libs/cppflow"]
-	path = 3rd_party_libs/cppflow
-	url = https://github.com/serizba/cppflow.git

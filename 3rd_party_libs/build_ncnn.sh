@@ -1,22 +1,19 @@
-# download ncnn
-
-test -e ncnn || git clone git@github.com:Tencent/ncnn.git
+# Download ncnn
+test -e ncnn || git clone https://github.com/Tencent/ncnn.git
 
 cd ncnn
-git reset --hard 0e83b0f
+git reset --hard 5e4ea0b # Jan 24 release
+
 #########
-
-# build for broadwell architecture in single thread mode
+# build for amd64 architecture
 #########
-mkdir build_broadwell
-cd build_broadwell
+mkdir build_amd64
+cd build_amd64
 
-	cmake -D NCNN_BUILD_TOOLS=OFF -D NCNN_VULKAN=OFF -D CMAKE_BUILD_TYPE=Release -D NCNN_OPENMP=OFF -D NCNN_AVX2=ON -D CMAKE_CXX_FLAGS="-march=broadwell" ..
+# Unix
+cmake -D NCNN_BUILD_EXAMPLES=OFF -D NCNN_VULKAN=OFF -D NCNN_AVX2=ON -D CMAKE_BUILD_TYPE=Release ..
 
-if [ "$(uname)" == "Darwin" ]; then
-    sysctl -n hw.physicalcpu | xargs -I % make -j%
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    nproc | xargs -I % make -j%
-fi
+nproc | xargs -I % make -j%
 
 make install
+
