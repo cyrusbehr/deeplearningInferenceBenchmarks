@@ -12,6 +12,6 @@ private:
     ncnn::Net m_net;
     int m_numThreads = -1;
 
-    const std::string WEIGHTS_NAME = "ncnn_tfv5.bin";
-    const std::string PARAMS_NAME = "ncnn_tfv5.param";
+    const std::string WEIGHTS_NAME = "ncnn.bin";
+    const std::string PARAMS_NAME = "ncnn.param";
 };

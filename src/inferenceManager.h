@@ -2,7 +2,11 @@
 
 #include <memory>
 
-#include "ncnnInferEng.h" // TODO will need to put ifdef statements here
+#ifdef USE_MXNET
+#include "mxnetInferEng.h"
+#else
+#include "ncnnInferEng.h"
+#endif
 
 class InferenceManager {
 public:
