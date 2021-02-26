@@ -81,5 +81,5 @@ void InferenceManager::runBenchmark(unsigned int numIterations) {
 
     // Read the memory usage
     auto memUsageKb = getProcessMemUsage();
-    std::cout << "Memory usage: " << memUsageKb << " kb" << std::endl;
+    std::cout << "Memory usage: " << memUsageKb / 1000000 << " Gb" << std::endl;
 }
