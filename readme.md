@@ -37,3 +37,9 @@ The number of inferences used to generate the average time is on the order of 10
 | 9                 	| 67 ms                   	| 1.72 Gb      	|
 | 10                	| 68 ms                   	| 1.72 Gb      	|
 | Unrestricted (20) 	| 66 ms                   	| 1.72 Gb      	|
+
+### mxnet
+- Github [link](https://github.com/apache/incubator-mxnet)
+- git release hash: `2fc0706` - 1.8.0.rc3
+- Using MKL backend, download instructions [here](https://software.intel.com/content/www/us/en/develop/articles/installing-intel-oneapi-toolkits-via-apt.html)
+- CMake build arguments: `-DUSE_CPP_PACKAGE=1 -DBUILD_CPP_EXAMPLES=OFF -DUSE_CUDA=0 -DUSE_MKL_IF_AVAILABLE=1 -DUSE_BLAS=mkl -DUSE_OPENCV=0 -DUSE_LAPACK=0 -DUSE_OPENMP=1 -DMKL_INCLUDE_DIR=/opt/intel/oneapi/mkl/latest/include -DMKL_RT_LIBRARY=/opt/intel/oneapi/mkl/latest/lib/intel64/libmkl_rt.so -DCMAKE_BUILD_TYPE=Release`
