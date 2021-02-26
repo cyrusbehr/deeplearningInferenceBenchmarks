@@ -22,7 +22,8 @@ The number of inferences used to generate the average time is on the order of 10
 ### ncnn
 - Github [link](https://github.com/Tencent/ncnn)
 - git release hash: `5e4ea0b`
-- CMake build arguments: `-D NCNN_BUILD_EXAMPLES=OFF -D NCNN_VULKAN=OFF -D NCNN_AVX2=ON -D CMAKE_BUILD_TYPE=Release` 
+- CMake build arguments: `-D NCNN_BUILD_EXAMPLES=OFF -D NCNN_VULKAN=OFF -D NCNN_AVX2=ON -D CMAKE_BUILD_TYPE=Release`
+- Runtime dependencies: `libomp.so`
 
 | Number of threads 	| Average inference speed 	| Memory usage 	|
 |-------------------	|-------------------------	|--------------	|
@@ -43,3 +44,4 @@ The number of inferences used to generate the average time is on the order of 10
 - git release hash: `2fc0706` - 1.8.0.rc3
 - Using MKL backend, download instructions [here](https://software.intel.com/content/www/us/en/develop/articles/installing-intel-oneapi-toolkits-via-apt.html)
 - CMake build arguments: `-DUSE_CPP_PACKAGE=1 -DBUILD_CPP_EXAMPLES=OFF -DUSE_CUDA=0 -DUSE_MKL_IF_AVAILABLE=1 -DUSE_BLAS=mkl -DUSE_OPENCV=0 -DUSE_LAPACK=0 -DUSE_OPENMP=1 -DMKL_INCLUDE_DIR=/opt/intel/oneapi/mkl/latest/include -DMKL_RT_LIBRARY=/opt/intel/oneapi/mkl/latest/lib/intel64/libmkl_rt.so -DCMAKE_BUILD_TYPE=Release`
+- Runtime dependencies: `libmkl_rt.so libomp.so libpthread.so`
