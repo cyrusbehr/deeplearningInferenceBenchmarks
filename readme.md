@@ -12,7 +12,8 @@ The time taken to read the image into memory and convert to rgb format is *not* 
 The time taken to convert the rgb image buffer into the framework-specific expected network input format *is* included in the inference time. 
 First inference time is discarded to ensure all network weights and params have been loaded. Memory usage refers to maximum resident set size.
 The number of inferences used to generate the average time is on the order of 1000. 
-*Unrestricted threads* in tables below means allowing the inference framework to choose how many threads it wants to use on it's own.  
+*Unrestricted threads* in tables below means allowing the inference framework to choose how many threads it wants to use on it's own.
+Runtime dependencies refers to dependencies which must be linked and are *not* standard system libraries such as `libstdc++.so`. 
 
 ## Usage
 `./deeplearningInferenceBenchmarks /path/to/model/directory number_of_threads (optional)`
