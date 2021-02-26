@@ -46,3 +46,17 @@ Runtime dependencies refers to dependencies which must be linked and are *not* s
 - Using MKL backend, download instructions [here](https://software.intel.com/content/www/us/en/develop/articles/installing-intel-oneapi-toolkits-via-apt.html)
 - CMake build arguments: `-DUSE_CPP_PACKAGE=1 -DBUILD_CPP_EXAMPLES=OFF -DUSE_CUDA=0 -DUSE_MKL_IF_AVAILABLE=1 -DUSE_BLAS=mkl -DUSE_OPENCV=0 -DUSE_LAPACK=0 -DUSE_OPENMP=1 -DMKL_INCLUDE_DIR=/opt/intel/oneapi/mkl/latest/include -DMKL_RT_LIBRARY=/opt/intel/oneapi/mkl/latest/lib/intel64/libmkl_rt.so -DCMAKE_BUILD_TYPE=Release`
 - Runtime dependencies: `libmkl_rt.so libomp.so libpthread.so`
+
+| Number of threads     | Average inference speed   | Memory usage  |
+|-------------------    |-------------------------  |-------------- |
+| 1                     | 352 ms                    | 0.52 Gb       |
+| 2                     | 188 ms                    | 0.52 Gb       |
+| 3                     | 134 ms                    | 0.52 Gb       |
+| 4                     | 108 ms                    | 0.53 Gb       |
+| 5                     | 93 ms                     | 0.52 Gb       |
+| 6                     | 82 ms                     | 0.52 Gb       |
+| 7                     | 74 ms                     | 0.52 Gb       |
+| 8                     | 68 ms                     | 0.52 Gb       |
+| 9                     | 65 ms                     | 0.52 Gb       |
+| 10                    | 64 ms                     | 0.52 Gb       |
+| Unrestricted (10)     | 67 ms                     | 0.52 Gb       |

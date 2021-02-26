@@ -1,11 +1,8 @@
 cmake_minimum_required(VERSION 3.17)
 
-option(USE_MXNET "Use the mxnet backend" ON)
+option(USE_MXNET "Use the mxnet backend" OFF)
 
-set(USE_MXNET true)
 project(deeplearningInferenceBenchmarks)
-
-add_definitions(-DUSE_MXNET) # TODO Remove this
 
 if (USE_MXNET)
     add_definitions(-DUSE_MXNET)
