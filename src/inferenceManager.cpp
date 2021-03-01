@@ -63,6 +63,12 @@ void InferenceManager::runBenchmark(unsigned int numIterations) {
     // Ensure the integrity of the output against the expected result.
     std::array<float, 500> expectedOutput{};
     readTemplateFromDisk("../test_data/template.bin", expectedOutput);
+
+    std::cout << "-----------------------------------------" << std::endl;
+    std::cout << "Expected output" << std::endl;
+    std::cout << "-----------------------------------------" << std::endl;
+    std::cout << expectedOutput[0] << std::endl;
+
     normalize(output);
     normalize(expectedOutput);
 
