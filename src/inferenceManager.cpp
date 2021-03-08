@@ -61,13 +61,9 @@ void InferenceManager::runBenchmark(unsigned int numIterations) {
     auto totalTime = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
 
     // Ensure the integrity of the output against the expected result.
+    // NOTE: This template is already normalized
     std::array<float, 500> expectedOutput{};
     readTemplateFromDisk("../test_data/template.bin", expectedOutput);
-
-    std::cout << "-----------------------------------------" << std::endl;
-    std::cout << "Expected output" << std::endl;
-    std::cout << "-----------------------------------------" << std::endl;
-    std::cout << expectedOutput[0] << std::endl;
 
     normalize(output);
     normalize(expectedOutput);

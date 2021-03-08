@@ -2,6 +2,10 @@
 #include "onnxRuntimeDefaultInferEng.h"
 
 InferenceEngine::InferenceEngine(const std::string &modelDir) {
+    std::cout << "Using onnxruntime inference engine" << std::endl;
+    std::cout << "-------------------------------------------------" << std::endl;
+    std::cout << "-------------------------------------------------" << std::endl;
+
     m_envPtr = std::make_unique<Ort::Env>(ORT_LOGGING_LEVEL_WARNING, "test");
     m_options.SetInterOpNumThreads(1);
 
@@ -47,5 +51,4 @@ void InferenceEngine::runInference(const cv::Mat& rgbImage, std::array<float, 50
     for (int i = 0; i < 500; ++i) {
         output[i] = floatarr[i];
     }
-    std::cout << "First output: " << output[0] << std::endl;
 }
