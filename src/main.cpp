@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     }
 
     InferenceManager inferenceManager(argv[1]);
-    inferenceManager.runBenchmark(100);
+    inferenceManager.runBenchmark(1000);
 
     return 0;
 }
