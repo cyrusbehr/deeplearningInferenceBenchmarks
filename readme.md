@@ -71,6 +71,20 @@ Runtime dependencies refers to dependencies which must be linked and are *not* s
 - CMake build arguments: `-DCMAKE_BUILD_TYPE=Release`
 - Runtime dependencies: `libinference_engine.so libngraph.so libinference_engine_transformations.so libtbb.so.2 libpthread.so.0 libMKLDNNPlugin.so`
 
+| Number of threads     | Average inference speed   | Memory usage  |
+|-------------------    |-------------------------  |-------------- |
+| 1                     | 301 ms                    | 0.57 Gb       |
+| 2                     | 154 ms                    | 0.57 Gb       |
+| 3                     | 112 ms                    | 0.57 Gb       |
+| 4                     | 86 ms                     | 0.57 Gb       |
+| 5                     | 74 ms                     | 0.57 Gb       |
+| 6                     | 64 ms                     | 0.57 Gb       |
+| 7                     | 57 ms                     | 0.57 Gb       |
+| 8                     | 51 ms                     | 0.57 Gb       |
+| 9                     | 49 ms                     | 0.57 Gb       |
+| 10                    | 47 ms                     | 0.57 Gb       |
+| Unrestricted (10)     | 46 ms                     | 0.57 Gb       |
+
 ### onnx-runtime 
 - Github [link](https://github.com/microsoft/onnxruntime)
 - git release hash: `718ca7f` - v1.6.0
