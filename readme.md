@@ -91,4 +91,20 @@ Runtime dependencies refers to dependencies which must be linked and are *not* s
 ### onnx-runtime 
 - Github [link](https://github.com/microsoft/onnxruntime)
 - git release hash: `718ca7f` - v1.6.0
+- `GraphOptimizationLevel::ORT_ENABLE_ALL` optimization level
+- Maintains output integrity: yes
 - **Default CPU**
+
+| Number of threads 	| Average inference speed 	| Memory usage 	|
+|-------------------	|-------------------------	|--------------	|
+| 1                 	| 311 ms                  	| 0.37 Gb      	|
+| 2                 	| 163 ms                  	| 0.37 Gb      	|
+| 3                 	| 122 ms                  	| 0.37 Gb      	|
+| 4                 	| 96 ms                   	| 0.37 Gb      	|
+| 5                 	| 82 ms                   	| 0.37 Gb      	|
+| 6                 	| 73 ms                   	| 0.37 Gb      	|
+| 7                 	| 66 ms                   	| 0.37 Gb      	|
+| 8                 	| 61 ms                   	| 0.37 Gb      	|
+| 9                 	| 59 ms                   	| 0.37 Gb      	|
+| 10                	| 57 ms                   	| 0.37 Gb      	|
+| Unrestricted (20) 	| 63 ms                   	| 0.37 Gb      	|
