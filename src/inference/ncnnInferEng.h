@@ -3,10 +3,10 @@
 #include "inferenceEngineTemplate.h"
 #include "net.h"
 
-class InferenceEngine : InferenceEngineTemplate {
+class InferenceEng : InferenceEngineTemplate {
 public:
-    InferenceEngine(const std::string& modelDir);
-    ~InferenceEngine() = default;
+    InferenceEng(const std::string& modelDir);
+    ~InferenceEng() = default;
     void runInference(const cv::Mat& rgbImage, std::array<float, 500>& output) override;
 private:
     ncnn::Net m_net;

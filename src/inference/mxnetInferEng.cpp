@@ -1,6 +1,6 @@
 #include "mxnetInferEng.h"
 
-inline NDArray InferenceEngine::matToNDArray(cv::Mat rgb_image, Context ctx) {
+inline NDArray InferenceEng::matToNDArray(cv::Mat rgb_image, Context ctx) {
     std::vector<float> data_buffer;
 
     // hwc to chw conversion
@@ -16,7 +16,7 @@ inline NDArray InferenceEngine::matToNDArray(cv::Mat rgb_image, Context ctx) {
     return NDArray(data_buffer, Shape(1, 3, rgb_image.rows, rgb_image.cols), ctx);
 }
 
-InferenceEngine::InferenceEngine(const std::string &modelDir)
+InferenceEng::InferenceEng(const std::string &modelDir)
     : m_globalCtx(Context::cpu()) {
     std::cout << "Using mxnet inference engine" << std::endl;
     std::cout << "-------------------------------------------------" << std::endl;
@@ -47,11 +47,11 @@ InferenceEngine::InferenceEngine(const std::string &modelDir)
             std::map<std::string, OpReqType>(), m_auxMap);
 }
 
-InferenceEngine::~InferenceEngine() noexcept {
+InferenceEng::~InferenceEng() noexcept {
         delete m_executor;
 }
 
-void InferenceEngine::runInference(const cv::Mat &rgbImage, std::array<float, 500> &output) {
+void InferenceEng::runInference(const cv::Mat &rgbImage, std::array<float, 500> &output) {
     auto data = matToNDArray(rgbImage, m_globalCtx);
     data.CopyTo(&(m_executor->arg_dict()["data"]));
     NDArray::WaitAll();

@@ -11,7 +11,7 @@ typedef std::chrono::high_resolution_clock Clock;
 #include "util.h"
 
 InferenceManager::InferenceManager(const std::string &modelDir) {
-    m_inferenceEnginePtr = std::make_unique<InferenceEngine>(modelDir);
+    m_inferenceEnginePtr = std::make_unique<InferenceEng>(modelDir);
 }
 
 void InferenceManager::normalize(std::array<float, 500>& v) {
@@ -70,7 +70,8 @@ void InferenceManager::runBenchmark(unsigned int numIterations) {
 
     auto simScore = dotProduct(output, expectedOutput);
     std::cout << "Similarity score: " << simScore << std::endl;
-    if (simScore > 1.01 || simScore < 0.99) {
+    if (simScore > 1.03 || simScore < 0.95) {
+        // Due to optimizations in OpenVINO, output vector is not exactly the same
         throw std::runtime_error("Error, similarity score is not 1!");
     }
 

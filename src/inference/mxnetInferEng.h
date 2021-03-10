@@ -4,10 +4,10 @@
 #include "mxnet-cpp/MxNetCpp.h"
 using namespace mxnet::cpp;
 
-class InferenceEngine : InferenceEngineTemplate {
+class InferenceEng : InferenceEngineTemplate {
 public:
-    InferenceEngine(const std::string& modelDir);
-    ~InferenceEngine();
+    InferenceEng(const std::string& modelDir);
+    ~InferenceEng();
     void runInference(const cv::Mat& rgbImage, std::array<float, 500>& output) override;
 private:
     inline NDArray matToNDArray(cv::Mat rgb_image, Context ctx = Context::cpu());

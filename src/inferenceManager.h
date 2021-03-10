@@ -7,6 +7,8 @@
 #include "mxnetInferEng.h"
 #elif USE_ONNX_DEFAULT
 #include "onnxRuntimeDefaultInferEng.h"
+#elif USE_OPENVINO
+#include "openvinoInferEng.h"
 #else
 #include "ncnnInferEng.h"
 #endif
@@ -17,7 +19,7 @@ public:
 
     void runBenchmark(unsigned int numIterations = 1000);
 private:
-    std::unique_ptr<InferenceEngine> m_inferenceEnginePtr = nullptr;
+    std::unique_ptr<InferenceEng> m_inferenceEnginePtr = nullptr;
     const std::string m_imagePath;
 
     void readTemplateFromDisk(const std::string& templatePath, std::array<float, 500>& templ);

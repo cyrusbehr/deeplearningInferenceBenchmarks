@@ -1,6 +1,6 @@
 #include "ncnnInferEng.h"
 
-InferenceEngine::InferenceEngine(const std::string &modelDir) {
+InferenceEng::InferenceEng(const std::string &modelDir) {
     std::cout << "Using ncnn inference engine" << std::endl;
     std::cout << "-------------------------------------------------" << std::endl;
     std::cout << "-------------------------------------------------" << std::endl;
@@ -18,7 +18,7 @@ InferenceEngine::InferenceEngine(const std::string &modelDir) {
     }
 }
 
-void InferenceEngine::runInference(const cv::Mat& rgbImage, std::array<float, 500>& output) {
+void InferenceEng::runInference(const cv::Mat& rgbImage, std::array<float, 500>& output) {
     auto in = ncnn::Mat::from_pixels(rgbImage.data, ncnn::Mat::PIXEL_RGB, rgbImage.cols, rgbImage.rows);
 
     auto ex = m_net.create_extractor();

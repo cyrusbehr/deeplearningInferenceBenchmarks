@@ -1,7 +1,7 @@
 #include <vector>
 #include "onnxRuntimeDefaultInferEng.h"
 
-InferenceEngine::InferenceEngine(const std::string &modelDir) {
+InferenceEng::InferenceEng(const std::string &modelDir) {
     std::cout << "Using onnxruntime inference engine" << std::endl;
     std::cout << "-------------------------------------------------" << std::endl;
     std::cout << "-------------------------------------------------" << std::endl;
@@ -21,7 +21,7 @@ InferenceEngine::InferenceEngine(const std::string &modelDir) {
     m_sessionPtr = std::make_unique<Ort::Session>(*m_envPtr, modelPath.c_str(), m_options);
 }
 
-void InferenceEngine::runInference(const cv::Mat& rgbImage, std::array<float, 500>& output) {
+void InferenceEng::runInference(const cv::Mat& rgbImage, std::array<float, 500>& output) {
     cv::Mat imgRgbFloat;
     rgbImage.convertTo(imgRgbFloat, CV_32F, 1.0 / 255);
 

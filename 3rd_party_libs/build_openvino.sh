@@ -12,3 +12,4 @@ cd build
 
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make --jobs=$(nproc --all)
+make DESTDIR=packaged install
