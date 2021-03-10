@@ -12,7 +12,7 @@ public:
     ~InferenceEng() = default;
     void runInference(const cv::Mat& rgbImage, std::array<float, 500>& output) override;
 private:
-    const std::string MODEL_NAME = "tfv5_reshaped_relu_wo_id.onnx";
+    const std::string MODEL_NAME = "model.onnx";
     std::unique_ptr<Ort::Session> m_sessionPtr;
     std::unique_ptr<Ort::Env> m_envPtr;
     Ort::SessionOptions m_options;
