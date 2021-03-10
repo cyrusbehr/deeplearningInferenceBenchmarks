@@ -94,6 +94,7 @@ Runtime dependencies refers to dependencies which must be linked and are *not* s
 - `GraphOptimizationLevel::ORT_ENABLE_ALL` optimization level
 - Maintains output integrity: yes
 - **Default CPU**
+- Runtime dependencies: `libonnxruntime.so.1.6.0 libgomp.so.1`
 
 | Number of threads 	| Average inference speed 	| Memory usage 	|
 |-------------------	|-------------------------	|--------------	|
