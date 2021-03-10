@@ -43,7 +43,7 @@ Runtime dependencies refers to dependencies which must be linked and are *not* s
 
 ### mxnet
 - Github [link](https://github.com/apache/incubator-mxnet)
-- git release hash: `2fc0706` - 1.8.0.rc3
+- git release tag: `1.8.0.rc3`
 - Using MKL backend, download instructions [here](https://software.intel.com/content/www/us/en/develop/articles/installing-intel-oneapi-toolkits-via-apt.html)
 - CMake build arguments: `-DUSE_CPP_PACKAGE=1 -DBUILD_CPP_EXAMPLES=OFF -DUSE_CUDA=0 -DUSE_MKL_IF_AVAILABLE=1 -DUSE_BLAS=mkl -DUSE_OPENCV=0 -DUSE_LAPACK=0 -DUSE_OPENMP=1 -DMKL_INCLUDE_DIR=/opt/intel/oneapi/mkl/latest/include -DMKL_RT_LIBRARY=/opt/intel/oneapi/mkl/latest/lib/intel64/libmkl_rt.so -DCMAKE_BUILD_TYPE=Release`
 - Runtime dependencies: `libmkl_rt.so libomp.so libpthread.so`
@@ -61,6 +61,15 @@ Runtime dependencies refers to dependencies which must be linked and are *not* s
 | 9                     | 65 ms                     | 0.52 Gb       |
 | 10                    | 64 ms                     | 0.52 Gb       |
 | Unrestricted (10)     | 67 ms                     | 0.52 Gb       |
+
+
+### OpenVINO
+- Github [link](https://github.com/openvinotoolkit/openvino)
+- git release tag: `tags/2021.2`
+- Using MKL-DNN CPU plugin.
+- Model optimization run with following options: `python3 mo_mxnet.py --input_model ./mxnet-0000.params --input_shape [1,3,112,112] -reverse_input_channels`
+- CMake build arguments: `-DCMAKE_BUILD_TYPE=Release`
+- Runtime dependencies: `libinference_engine.so libngraph.so libinference_engine_transformations.so libtbb.so.2 libpthread.so.0 libMKLDNNPlugin.so`
 
 ### onnx-runtime 
 - Github [link](https://github.com/microsoft/onnxruntime)
