@@ -2,10 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 
 option(USE_MXNET "Use the mxnet backend" OFF)
 option(USE_ONNX_DEFAULT "Use the onnx-runtime default CPU backend" OFF)
-option(USE_OPENVINO "Use the OpenVINO" ON)
-
-set(USE_OPENVINO ON) # TODO Remove this
-add_definitions(-DUSE_OPENVINO) # TODO remove this
+option(USE_OPENVINO "Use the OpenVINO" OFF)
 
 project(deeplearningInferenceBenchmarks)
 
