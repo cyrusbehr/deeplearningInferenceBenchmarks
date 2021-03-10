@@ -21,9 +21,23 @@ InferenceEng::InferenceEng(const std::string &modelDir) {
     m_sessionPtr = std::make_unique<Ort::Session>(*m_envPtr, modelPath.c_str(), m_options);
 }
 
+inline std::vector<float> rgbImgToFloatArr(cv::Mat rgb_image) {
+    std::vector<float> data_buffer;
+
+    // hwc to chw conversion
+    for (int c = 0; c < 3; ++c) {
+        for (int i = 0; i < rgb_image.rows; ++i) {
+            for (int j = 0; j < rgb_image.cols; ++j) {
+                data_buffer.push_back(static_cast<float>(rgb_image.data[(i * rgb_image.cols + j) * 3 + c]));
+            }
+        }
+    }
+
+    return data_buffer;
+}
+
 void InferenceEng::runInference(const cv::Mat& rgbImage, std::array<float, 500>& output) {
-    cv::Mat imgRgbFloat;
-    rgbImage.convertTo(imgRgbFloat, CV_32F, 1.0 / 255);
+    auto imgRgbFloat = rgbImgToFloatArr(rgbImage);
 
     size_t inputTensorSize = 112 * 112 * 3;
 
@@ -34,7 +48,7 @@ void InferenceEng::runInference(const cv::Mat& rgbImage, std::array<float, 500>&
     // create input tensor object from data values
     auto memory_info = Ort::MemoryInfo::CreateCpu(OrtArenaAllocator, OrtMemTypeDefault);
 
-    Ort::Value input_tensor = Ort::Value::CreateTensor<float>(memory_info, reinterpret_cast<float*>(imgRgbFloat.data), inputTensorSize, inputNodeDims.data(), inputNodeDims.size());
+    Ort::Value input_tensor = Ort::Value::CreateTensor<float>(memory_info, reinterpret_cast<float*>(imgRgbFloat.data()), inputTensorSize, inputNodeDims.data(), inputNodeDims.size());
     if (!input_tensor.IsTensor()) {
         throw std::runtime_error("Input is not a tensor");
     }
