@@ -2,7 +2,11 @@ cmake_minimum_required(VERSION 3.17)
 
 option(USE_MXNET "Use the mxnet backend" OFF)
 option(USE_ONNX_DEFAULT "Use the onnx-runtime default CPU backend" OFF)
+option(USE_ONNX_DNNL "Use the onnx-runtime dnnl backend" ON)
 option(USE_OPENVINO "Use the OpenVINO" OFF)
+
+set(USE_ONNX_DNNL ON)
+add_definitions(-DUSE_ONNX_DNNL)
 
 project(deeplearningInferenceBenchmarks)
 
@@ -12,6 +16,8 @@ elseif(USE_ONNX_DEFAULT)
     add_definitions(-DUSE_ONNX_DEFAULT)
 elseif(USE_OPENVINO)
     add_definitions(-DUSE_OPENVINO)
+elseif(USE_ONNX_DNNL)
+    add_definitions(-DUSE_ONNX_DNNL)
 endif()
 
 
@@ -29,6 +35,11 @@ link_directories("${CMAKE_CURRENT_LIST_DIR}/3rd_party_libs/ncnn/build_amd64/inst
 if (USE_MXNET)
     include_directories(${CMAKE_CURRENT_LIST_DIR}/3rd_party_libs/incubator-mxnet/build_amd64/packaged/usr/local/include)
     link_directories(${CMAKE_CURRENT_LIST_DIR}/3rd_party_libs/incubator-mxnet/build_amd64)
+elseif(USE_ONNX_DNNL)
+    include_directories(${CMAKE_CURRENT_LIST_DIR}/3rd_party_libs/onnxruntime/include)
+    include_directories(${CMAKE_CURRENT_LIST_DIR}/3rd_party_libs/onnxruntime/include/onnxruntime/core/session)
+    include_directories(${CMAKE_CURRENT_LIST_DIR}/3rd_party_libs/onnxruntime/include/onnxruntime/core/providers/dnnl/)
+    link_directories(${CMAKE_CURRENT_LIST_DIR}/3rd_party_libs/onnxruntime/build/Linux/Release)
 elseif(USE_ONNX_DEFAULT)
     include_directories(${CMAKE_CURRENT_LIST_DIR}/3rd_party_libs/onnxruntime-linux-x64-1.6.0/include)
     link_directories(${CMAKE_CURRENT_LIST_DIR}/3rd_party_libs/onnxruntime-linux-x64-1.6.0/lib)
@@ -51,6 +62,9 @@ set(SOURCE_FILES
 if (USE_MXNET)
     list(APPEND SOURCE_FILES src/inference/mxnetInferEng.cpp)
     list(APPEND LINKER_LIBS libmxnet.so)
+elseif(USE_ONNX_DNNL)
+    list(APPEND SOURCE_FILES src/inference/onnxRuntimeDefaultInferEng.cpp)
+    list(APPEND LINKER_LIBS libonnxruntime.so)
 elseif(USE_ONNX_DEFAULT)
     list(APPEND SOURCE_FILES src/inference/onnxRuntimeDefaultInferEng.cpp)
     list(APPEND LINKER_LIBS libonnxruntime.so)

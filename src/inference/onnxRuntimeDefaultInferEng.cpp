@@ -17,8 +17,12 @@ InferenceEng::InferenceEng(const std::string &modelDir) {
     // ORT_ENABLE_ALL -> To Enable All possible opitmizations
     m_options.SetGraphOptimizationLevel(GraphOptimizationLevel::ORT_ENABLE_ALL);
 
+    bool enable_cpu_mem_arena = true;
+    Ort::ThrowOnError(OrtSessionOptionsAppendExecutionProvider_Dnnl(m_options, enable_cpu_mem_arena));
+
     const std::string modelPath = modelDir + MODEL_NAME;
     m_sessionPtr = std::make_unique<Ort::Session>(*m_envPtr, modelPath.c_str(), m_options);
+
 }
 
 inline std::vector<float> rgbImgToFloatArr(cv::Mat rgb_image) {
@@ -65,4 +69,10 @@ void InferenceEng::runInference(const cv::Mat& rgbImage, std::array<float, 500>&
     for (int i = 0; i < 500; ++i) {
         output[i] = floatarr[i];
     }
+
+    std::cout << output[0] << std::endl;
+    std::cout << output[1] << std::endl;
+    std::cout << output[2] << std::endl;
+    std::cout << output[3] << std::endl;
+    std::cout << "\n\n" << std::endl;
 }

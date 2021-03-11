@@ -5,7 +5,7 @@
 
 #ifdef USE_MXNET
 #include "mxnetInferEng.h"
-#elif USE_ONNX_DEFAULT
+#elif defined(USE_ONNX_DEFAULT) || defined(USE_ONNX_DNNL)
 #include "onnxRuntimeDefaultInferEng.h"
 #elif USE_OPENVINO
 #include "openvinoInferEng.h"
