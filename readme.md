@@ -117,3 +117,8 @@ Runtime dependencies refers to dependencies which must be linked and are *not* s
 | 9                 	| 59 ms                   	| 0.37 Gb      	|
 | 10                	| 57 ms                   	| 0.37 Gb      	|
 | Unrestricted (20) 	| 63 ms                   	| 0.37 Gb      	|
+
+## AMD Results
+Intel is known for throttling their MKL library for AMD CPUs. 
+It is therefore important to measure the latency on AMD CPUs, shown below: 
+![alt text](./images/amd_epyc.png)
