@@ -10,7 +10,7 @@ The benchmarks are performed on `Dual Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz`
 The model used for inference is the [Arcface](https://docs.openvinotoolkit.org/latest/omz_models_public_face_recognition_resnet100_arcface_face_recognition_resnet100_arcface.html) ResNet100 with 65.131 MParams and 24.209 GFLOPs. 
 The model was trained in mxnet.
 The model input is a 112x112 rgb image. 
-The time taken to read the image into memory and convert to rgb format is *not* included in the inference time.
+The time taken to read the image into memory and decode the image to rgb format is *not* included in the inference time.
 The time taken to convert the rgb image buffer into the framework-specific expected network input format *is* included in the inference time. 
 First inference time is discarded to ensure all network weights and params have been loaded. Memory usage refers to maximum resident set size.
 The number of inferences used to generate the average time is on the order of 1000. 
